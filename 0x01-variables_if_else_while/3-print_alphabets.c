@@ -1,33 +1,40 @@
 #include <stdio.h>
-
 /**
- * main - print the letters of the alphabet
+ * main - Prints alphabet
  *
- * Description: print the letters of the alphabet in lower then in uppercase
+ * Description - This function prints all the alphabet it lowercase.
  *
- * Return: Always 0 (Success)
+ * Return: Always Success (0)
+ *
  */
+
 
 int main(void)
 {
-	int i, j;
 
-	i = 97;
-	j = 65;
+	char a[100] = "abcdefghijklmnopqrstuvwxyz";
+	char A[100] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-	while (i < 123)
+
+	int i;
+
+
+	for (i = 0; i < 26; i++)
 	{
-		putchar(i);
-		i++;
+
+		putchar(a[i]);
+
 	}
 
-	while (j < 91)
+	for (i = 0; i < 26; i++)
 	{
-		putchar(j);
-		j++;
+
+		putchar(A[i]);
+
 	}
 
-	putchar(10);
+	putchar('\n');
 
 	return (0);
+
 }
