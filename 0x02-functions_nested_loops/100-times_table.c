@@ -1,26 +1,49 @@
 #include "main.h"
+
 /**
-* print_times_table - a function that prints the n times table starting from 0
-*
-* @n: number input Ranges from 0-15 (inclusive)
-*
-*/
+ * print_times_table - Print the `n` times table, starting with 0.
+ * Description: If `n` is greater than 15 or less than 0, print nothing.
+ * @n: int type number
+ */
 void print_times_table(int n)
 {
-	int row, col, i;
+	int x = 0, y, z;
 
-	i = 0;
-
-	if (!(n > 15 || n < 0))
+	if (n > 15 || n < 0)
+		return;
+	while (x <= n)
 	{
-		for (row = 0; row <= n; row++)
+		for (y = 0; y <= n; y++)
 		{
-			for (col = 0; col <= n; col += i)
+			z = x * y;
+			if (z > 99)
 			{
-				_putchar((col + '0'));
+				_putchar(z / 100 + '0');
+				_putchar((z / 10 % 10) + '0');
+				_putchar(z % 10 + '0');
 			}
-			i++;
-			_putchar('\n');
+			else if (z > 9)
+			{
+				_putchar(' ');
+				_putchar(z / 10 + '0');
+				_putchar(z % 10 + '0');
+			}
+			else if (y != 0)
+			{
+				_putchar(' ');
+				_putchar(' ');
+				_putchar(z + '0');
+			}
+			else
+				_putchar(z + '0');
+
+			if (y != n)
+			{
+				_putchar(',');
+				_putchar(' ');
+			}
 		}
+		_putchar('\n');
+		x++;
 	}
 }
