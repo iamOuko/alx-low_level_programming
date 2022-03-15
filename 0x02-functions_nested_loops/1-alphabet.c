@@ -1,13 +1,12 @@
 #include "main.h"
 
-void print_alphabet(void){
-    int c;
+void print_alphabet(void)
+{
+	int i;
 
-	while (c <= 'z'){
-		_putchar(c);
-		c++;
+	for (i = 'a'; i <= 'z'; i++)
+	{
+		_putchar(i);
 	}
-
 	_putchar('\n');
 }
-	
