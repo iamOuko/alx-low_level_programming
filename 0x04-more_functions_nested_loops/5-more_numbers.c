@@ -5,17 +5,18 @@
  * Description: Can only use _putchar 3 times
  */
 
-void more_numbers(void){
-    int i;
-	char c;
+void more_numbers(void)
+{
+	char i;
+	int c;
 
-	for (i = 0; i < 10; i++)
+	for (c = 1; c <= 10; c++)
 	{
-		for (c = 0; c <= 14; c++)
+		for (i = 0; i <= 14; i++)
 		{
-			if (c > 9)
-			_putchar((c / 10) + '0');
-			_putchar((c % 10) + '0');
+			if (i / 10 > 0)
+				_putchar((i / 10) + '0');
+			_putchar((i % 10) + '0');
 		}
 		_putchar('\n');
 	}
