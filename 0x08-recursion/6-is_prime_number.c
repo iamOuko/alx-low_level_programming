@@ -1,51 +1,36 @@
 #include "main.h"
 
 /**
- * is_prime_number - determine if a number is a prime number
- * @n: int number
- * Return: 1 if prime, 0 otherwise
+ * is_prime - recursively divide by higher divisor, skip even nums
+ * @n: number to check if prime
+ * @divisor: divisor
+ * Return: 1 if prime, 0 if not, or recursive function call
+ */
+
+int is_prime(int n, int divisor)
+{
+	if (n == divisor)
+		return (1);
+	if (n % divisor == 0)
+		return (0);
+	return (is_prime(n, divisor + 1));
+
+}
+
+/**
+ * is_prime_number - check if prime
+ * @n: number to check
+ * Return: 1 if prime, 0 if not
  */
 
 int is_prime_number(int n)
 {
-	if (n < 2)
+	int divisor = 3;
+
+	if (n % 2 == 0 || n < 2)
 		return (0);
-	if (n < 4)
+	if (n == 2)
 		return (1);
-	return (h(n, 2));
-}
 
-/**
- * _sqrt - return square root of number
- * @x: number
- * @i: number incrementer acting as divisor
- * Return: square root of `x`
- */
-
-int _sqrt(int x, int i)
-{
-	int square;
-
-	square = i * i;
-	if (square >= x)
-		return (i);
-	else
-		return (_sqrt(x, i + 1));
-}
-
-/**
- * h - helper function, recursive steps taken
- * @n: number given to original function is_prime_number
- * @d: incrementer divisor
- * Return: 0 if not prime, 1 if prime
- */
-
-int h(int n, int d)
-{
-	if (n % d == 0)
-		return (0);
-	else if (_sqrt(n, 1) < d)
-		return (1);
-	else
-		return (h(n, d + 1));
+	return (is_prime(n, divisor));
 }
