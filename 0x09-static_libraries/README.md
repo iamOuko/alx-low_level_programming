@@ -9,7 +9,7 @@
 ### Concepts to be learned in this repository
 - what a static library is
 - how it works
-- how to create one ar -cr
+- how to create one ar -rc
 - how to use it
 
 ### Description of what each file shows
