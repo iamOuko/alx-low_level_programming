@@ -1,52 +1,53 @@
 #include "lists.h"
 
 /**
- * insert_dnodeint_at_idx - insert a new node at given position
- * @h: double pointer to head
- * @idx: index to insert into
- * @n: value to store in new node
- * Return: Address of new node, or NULL if failed
- */
-dlistint_t *insert_dnodeint_at_idx(dlistint_t **h, unsigned int idx, int n)
+ * insert_dnodeint_at_index - inserts a new node at given index in the list
+ * @head: pointer to head of the list
+ * @idx: index to add at, starting from 0
+ * @n: value of new node
+ * Return: new node or null
+ **/
+dlistint_t *insert_dnodeint_at_index(dlistint_t **head, unsigned int idx, int n)
 {
-	unsigned int c;
-	dlistint_t *tmp, *prev, *new;
+	unsigned int count;
+	dlistint_t *tmp, *new, *tmp_prev;
 
+	if (head == NULL && idx > 0)
+	return (NULL);
 	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
 		return (NULL);
-	new->n = n;
-	for (tmp = *h, c = 1; tmp && c < idx; c++, tmp = tmp->next)
-		prev = tmp;
+	new->n = n, new->prev = new->next = NULL;
+
 	if (idx == 0)
 	{
-		*h = new; new->prev = NULL;
-		new->next = (tmp == NULL) ? NULL : tmp;
+		if (*head)
+	{
+		new->next = *head;
+		(*head)->prev = new, *head = new;
+	}
+		else
+			*head = new;
 		return (new);
 	}
-	if (idx == 1)
+	count = 1, tmp = (*head)->next;
+	while (tmp)
 	{
-		prev = *h;
-		tmp = ((*h)->next == NULL) ? NULL : (*h)->next;
-		new->prev = prev; new->next = tmp; prev->next = new;
-		if (tmp)
-			tmp->prev = new;
-		return (new);
-	}
-	if (idx == c && tmp == NULL)
-	{
-		if (prev != NULL)
+		if (idx == count)
 		{
-			new->prev = prev; new->next = NULL;
-			prev->next = new; return (new);
+			tmp->prev->next = new, new->prev = tmp->prev;
+			new->next = tmp, tmp->prev = new;
+			return (new);
 		}
-		free(new); return (NULL);
+		count++;
+		tmp_prev = tmp;
+		tmp = tmp->next;
 	}
-	else if (idx != c && tmp == NULL)
+	if (tmp == NULL && count == idx)
 	{
-		free(new); return (NULL);
+		tmp_prev->next = new, new->prev = tmp_prev;
+		return (new);
 	}
-	prev = tmp; tmp = tmp->next; new->prev = prev;
-	new->next = tmp; prev->next = new; tmp->prev = new;
-	return (new);
+	free(new);
+	return (NULL);
 }
